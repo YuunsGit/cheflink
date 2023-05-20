@@ -6,7 +6,6 @@ export async function GET() {
   const db = client.db("cheflink");
 
   const recipes = await db.collection("recipes").find().toArray();
-  console.log(recipes);
 
   return NextResponse.json(
     { recipes },
