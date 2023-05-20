@@ -1,33 +1,6 @@
-"use client";
-
 import Image from "next/image";
-import { kv } from "@vercel/kv";
 
 export default async function Home() {
-  const login = () => {
-    fetch("http://localhost:3000/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: "test@test.com", password: "test123" }),
-    }).then((res) => {
-      console.log(res.cookies);
-    });
-  };
-  //const exists = await kv.exists(session);
-
-  return (
-    <button className="p-6 bg-slate-300 text-black" onClick={login}>
-      Test
-    </button>
-  );
-
-  /*if (!exists) {
-    return <h1>Oops</h1>;
-  }*/
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
