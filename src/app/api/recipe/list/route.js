@@ -1,20 +1,15 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/database/mongo";
 
-export async function POST(req) {
-  const credentials = await req.json();
-
+export async function GET() {
   const client = await clientPromise;
   const db = client.db("cheflink");
 
-  const user = await db
-    .collection("users")
-    .findOne({ email: credentials.email });
-
-  console.log(user);
+  const recipes = await db.collection("recipes").find().toArray();
+  console.log(recipes);
 
   return NextResponse.json(
-    { message: "Register successful" },
+    { recipes },
     { status: 200, headers: { "content-type": "application/json" } }
   );
 }

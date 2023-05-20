@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/database/mongo";
 import Joi from "joi";
+import bcrypt from "bcryptjs";
 
 export async function POST(req) {
   const credentials = await req.json();
@@ -16,8 +17,8 @@ export async function POST(req) {
       .required(),
   });
 
-  if ((err = schema.validate(credentials).error)) {
-    return NextResponse.json(err.details, {
+  if (schema.validate(credentials).error) {
+    return NextResponse.json(schema.validate(credentials).error.details, {
       status: 400,
       headers: { "content-type": "application/json" },
     });
@@ -43,7 +44,13 @@ export async function POST(req) {
     );
   }
 
-  await db.collection("users").insertOne(credentials);
+  bcrypt.hash(credentials.password, 10, function (err, hash) {
+    db.collection("users").insertOne({
+      username: credentials.username,
+      email: credentials.email,
+      password: hash,
+    });
+  });
 
   return NextResponse.json(
     { message: "Register successful" },
