@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/database/mongo";
 
-export async function GET() {
+export async function POST() {
   const client = await clientPromise;
   const db = client.db("cheflink");
 
