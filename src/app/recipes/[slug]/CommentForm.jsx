@@ -20,6 +20,9 @@ export default function CommentForm({ recipe }) {
 
   const handleComment = async (e) => {
     e.preventDefault();
+    if (!user.authorized) {
+      router.push("/login");
+    }
     if (!content) {
       toast.error("Enter your comment");
     }

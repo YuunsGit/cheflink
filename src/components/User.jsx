@@ -10,7 +10,7 @@ export default function User() {
 
   return (
     <Link
-      href={user.authorized ? "/profile" : "/login"}
+      href={user.authorized ? "/recipes" : "/login"}
       className="flex items-center gap-x-2"
     >
       <UserCircleIcon className="h-10 w-10" />
