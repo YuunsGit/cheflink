@@ -6,7 +6,7 @@ export const metadata = {
   title: "Sign In",
 };
 
-export default function Login() {
+export function Login() {
   return (
     <main className="my-20 flex-grow space-y-12">
       <Image

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NotFound() {
+export function NotFound() {
   return (
     <main className="grid min-h-full flex-grow place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">

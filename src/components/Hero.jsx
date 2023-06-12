@@ -12,7 +12,7 @@ export default async function Hero() {
           possibilities on ChefLink.
         </h2>
         <button className="mr-auto flex items-center gap-x-2 rounded bg-secondary-500 px-6 py-3 text-lg font-semibold text-white transition-colors before:content-[''] hover:bg-secondary-600">
-          <Squares2X2Icon className="h-4 w-4" />
+          <Squares2X2Icon className="h-6 w-6" />
           <p>Browse Recipes</p>
         </button>
       </div>

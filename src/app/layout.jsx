@@ -8,6 +8,8 @@ import { authorize } from "@/api/auth";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { listRecipes } from "@/api/recipe";
+import { listComments } from "@/api/comment";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -22,8 +24,10 @@ export const metadata = {
   description: "Recipe sharing platform for chefs all around the world.",
 };
 
-export default async function RootLayout({ children }) {
+export async function RootLayout({ children }) {
   const user = await authorize();
+  const recipes = await listRecipes();
+  const comments = await listComments();
 
   return (
     <html className="bg-white" lang="en">

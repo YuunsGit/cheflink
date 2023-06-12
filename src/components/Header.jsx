@@ -1,15 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import { listRecipes } from "@/api/recipe";
 import SearchBox from "./SearchBox";
-import { listComments } from "@/api/comment";
 import User from "./User";
 
 export default async function Header() {
-  const recipes = await listRecipes();
-  const comments = await listComments();
-
   return (
     <header className="w-full bg-primary-700 text-white">
       <div className="mx-auto flex h-20 max-w-6xl flex-auto items-center justify-between gap-x-24">
