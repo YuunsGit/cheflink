@@ -34,40 +34,42 @@ export default function SearchBox({ recipes, comments }) {
         />
       </div>
       {search.length > 0 && expanded && (
-        <div className="relative translate-y-2 text-black">
-          <ul className="absolute left-0 w-full rounded bg-white px-2 py-2">
+        <div className="relative z-20 translate-y-2 text-black">
+          <ul className="absolute left-0 w-full space-y-4 rounded border bg-white px-2 py-2 shadow-lg">
             {search.map((recipe) => (
               <li className="group flex h-14 justify-between" key={recipe.id}>
-                <div className="flex items-center gap-x-3">
+                <div className="flex items-center gap-x-2">
                   <div
                     style={{ backgroundImage: `url(${recipe.image})` }}
-                    className="h-14 w-14 rounded bg-cover bg-center transition-all group-hover:w-20"
+                    className="h-14 w-14 rounded bg-cover bg-center transition-all"
                   />
-                  <p className="text-lg font-semibold">{recipe.title}</p>
+                  <p className="text-md font-semibold">{recipe.title}</p>
                 </div>
-                <div className="my-auto flex flex-col items-center gap-y-1">
-                  <div className="flex items-center gap-x-1">
+                <div className="my-auto flex flex-col items-stretch gap-y-1">
+                  <div className="flex items-center justify-end gap-x-1">
                     <p>
                       {comments.reduce((accu, curr) => {
                         if (curr.recipeId === recipe.id) {
                           return accu + 1;
                         }
-                      }, 0)}
+                        return accu;
+                      }, 0) || 0}
                     </p>
                     <ChatBubbleOvalLeftIcon className="h-4 w-4" />
                   </div>
-                  <div className="flex items-center gap-x-1">
+                  <div className="flex items-center justify-end gap-x-1">
                     <p>
                       {Math.round(
                         (comments.reduce((accu, curr) => {
                           if (curr.recipeId === recipe.id) {
                             return accu + curr.rating;
                           }
+                          return accu;
                         }, 0) /
                           comments.filter((c) => c.recipeId === recipe.id)
                             .length) *
                           10
-                      ) / 10}
+                      ) / 10 || `-`}
                     </p>
                     <StarIcon className="h-4 w-4" />
                   </div>

@@ -5,7 +5,7 @@ export const metadata = {
   title: "Register",
 };
 
-export function Register() {
+export default function Register() {
   return (
     <main className="my-20 flex-grow space-y-12">
       <Image

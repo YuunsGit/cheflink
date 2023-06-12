@@ -2,7 +2,7 @@
 
 import { ToastContainer } from "react-toastify";
 
-export function Container() {
+export default function Container() {
   return (
     <ToastContainer
       position="bottom-left"

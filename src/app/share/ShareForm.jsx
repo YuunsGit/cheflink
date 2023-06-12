@@ -62,12 +62,11 @@ export default function ShareForm() {
       title,
     });
     if (recipe?.error) {
-      toast.error(recipe?.error);
       setLoading(false);
-      return;
+      return toast.error(recipe?.error);
     }
-    toast.success("Recipe created successfully.");
-    router.push("/");
+    toast.success(recipe?.message);
+    router.push(`/recipes/${recipe.slug}`);
   };
 
   const handleUpload = async (upload) => {
@@ -132,9 +131,10 @@ export default function ShareForm() {
               </Link>
               <button
                 type="submit"
+                disabled={loading}
                 className="rounded-md bg-secondary-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
               >
-                Save & Share
+                {loading ? "Loading…" : "Save & Share"}
               </button>
             </div>
           </div>

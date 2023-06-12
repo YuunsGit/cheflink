@@ -41,7 +41,7 @@ export async function register(credentials) {
     });
     return { message: "Register successful" };
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }
 

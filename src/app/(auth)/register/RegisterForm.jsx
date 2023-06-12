@@ -29,9 +29,11 @@ export default function RegisterForm() {
   const onSubmit = async (data) => {
     setLoading(true);
     const registerSubmit = await registerUser(data);
-    setLoading(false);
 
-    if (registerSubmit?.error) return toast.error(registerSubmit.error);
+    if (registerSubmit?.error) {
+      setLoading(false);
+      return toast.error(registerSubmit.error);
+    }
     toast.success(registerSubmit?.message);
 
     router.push("/login");
@@ -151,10 +153,10 @@ export default function RegisterForm() {
       <div>
         <button
           type="submit"
-          disabled={loading ? true : false}
+          disabled={loading}
           className="focus-visible:outline-secondary flex w-full justify-center rounded-md bg-secondary-500 px-3 py-1.5 font-semibold leading-6 text-white shadow-sm transition-colors hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
-          {loading ? "Loading..." : "Register"}
+          {loading ? "Loading…" : "Register"}
         </button>
       </div>
     </form>

@@ -3,6 +3,9 @@
 import { Prisma } from "./db";
 
 export async function insertComment({ userId, recipeId, content, rating }) {
+  if (rating > 5 || rating < 0 || !Number.isInteger(rating)) {
+    return { error: "Rating must be an integer between 0 and 5" };
+  }
   try {
     await Prisma.getPrisma().comment.create({
       data: {
@@ -14,7 +17,7 @@ export async function insertComment({ userId, recipeId, content, rating }) {
     });
     return { message: "Comment created successfully" };
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }
 
@@ -27,7 +30,7 @@ export async function deleteComment({ commentId }) {
     });
     return { message: "Comment deleted successfully" };
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }
 
@@ -38,6 +41,6 @@ export async function listComments(props) {
     });
     return comments;
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }

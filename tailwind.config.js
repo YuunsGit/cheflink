@@ -14,6 +14,10 @@ module.exports = {
         "dots-pattern":
           "radial-gradient(circle, #ffa39a 10%, transparent 11%),radial-gradient(circle at bottom left, #ffa39a 5%, transparent 6%),radial-gradient(circle at bottom right, #ffa39a 5%, transparent 6%),radial-gradient(circle at top left, #ffa39a 5%, transparent 6%),radial-gradient(circle at top right, #ffa39a 5%, transparent 6%)",
       },
+      boxShadow: {
+        recipe:
+          "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+      },
       backgroundSize: {
         "dots-size": "2em 2em",
       },
@@ -44,7 +48,6 @@ module.exports = {
           900: "#7b3913",
           950: "#431b07",
         },
-        ternary: "#f99766",
       },
     },
   },

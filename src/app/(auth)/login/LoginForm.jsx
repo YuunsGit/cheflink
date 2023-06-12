@@ -24,9 +24,11 @@ export default function LoginForm() {
 
     setLoading(true);
     const loginSubmit = await login({ email, password });
-    setLoading(false);
 
-    if (loginSubmit?.error) return toast.error(loginSubmit.error);
+    if (loginSubmit?.error) {
+      setLoading(false);
+      return toast.error(loginSubmit.error);
+    }
     toast.success(loginSubmit?.message);
 
     router.push("/");
@@ -82,10 +84,10 @@ export default function LoginForm() {
       <div>
         <button
           type="submit"
-          disabled={loading ? true : false}
+          disabled={loading}
           className="focus-visible:outline-secondary flex w-full justify-center rounded-md bg-secondary-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm transition-colors hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
-          {loading ? "Loading..." : "Sign in"}
+          {loading ? "Loading…" : "Sign in"}
         </button>
       </div>
     </form>

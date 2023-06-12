@@ -10,6 +10,13 @@ export async function createRecipe({
   ingredients,
 }) {
   try {
+    const slug =
+      title
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "") +
+      "-" +
+      Math.floor(Math.random() * (10000 + 1));
     await Prisma.getPrisma().recipe.create({
       data: {
         userId,
@@ -17,18 +24,12 @@ export async function createRecipe({
         image,
         steps,
         ingredients,
-        slug:
-          title
-            .toLowerCase()
-            .replace(/ /g, "-")
-            .replace(/[^\w-]+/g, "") +
-          "-" +
-          Math.floor(Math.random() * (10000 + 1)),
+        slug,
       },
     });
-    return { message: "Recipe created successfully" };
+    return { message: "Recipe created successfully", slug };
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }
 
@@ -41,7 +42,7 @@ export async function deleteRecipe({ recipeId }) {
     });
     return { message: "Recipe deleted successfully" };
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }
 
@@ -52,7 +53,7 @@ export async function listRecipes(props) {
     });
     return recipes;
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }
 
@@ -65,6 +66,6 @@ export async function updateRecipe({ userId }) {
     });
     return recipes;
   } catch (e) {
-    return { error: "An error has ocurred" };
+    return { error: "An error has occurred" };
   }
 }
