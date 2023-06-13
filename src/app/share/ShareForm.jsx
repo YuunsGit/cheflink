@@ -47,10 +47,10 @@ export default function ShareForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (ingredients.size === 0) {
-      toast.error("Enter at least 1 ingredient.");
+      return toast.error("Enter at least 1 ingredient.");
     }
     if (steps.size === 0) {
-      toast.error("Enter at least 1 step.");
+      return toast.error("Enter at least 1 step.");
     }
 
     setLoading(true);

@@ -3,6 +3,7 @@ import { listUsers } from "@/api/user";
 import Link from "next/link";
 import { ChatBubbleOvalLeftIcon, StarIcon } from "@heroicons/react/20/solid";
 import { listComments } from "@/api/comment";
+import { DeleteRecipeButton } from "@/components/DeleteRecipeButton";
 
 export const metadata = {
   title: "Recipes",
@@ -20,8 +21,9 @@ export default async function Recipes() {
         {recipes.map((r) => (
           <div
             key={r.id}
-            className="group h-fit w-full rounded-md bg-gray-50 shadow-md transition-shadow hover:shadow-lg"
+            className="group relative flex h-full w-full flex-auto flex-col overflow-hidden rounded-md bg-gray-50 shadow-md transition-shadow hover:shadow-lg"
           >
+            <DeleteRecipeButton userId={r.userId} recipeId={r.id} />
             <Link
               className="block h-44 overflow-hidden"
               prefetch={false}
@@ -32,7 +34,7 @@ export default async function Recipes() {
                 className="h-full w-full rounded-t-md bg-cover bg-center transition-all group-hover:scale-110"
               />
             </Link>
-            <div className="m-4">
+            <div className="m-4 flex flex-grow flex-col">
               <Link
                 href={`/recipes/${r.slug}`}
                 prefetch={false}
@@ -43,7 +45,7 @@ export default async function Recipes() {
               <p className="text-sm">
                 by {users.find((u) => u.id === r.userId).username}
               </p>
-              <div className="right-0 my-auto flex w-full items-end justify-end gap-x-4 text-gray-500">
+              <div className="mt-auto flex w-full items-end justify-end gap-x-4 self-end text-gray-500">
                 <div className="flex items-center justify-end gap-x-1">
                   <p>
                     {comments.reduce((accu, curr) => {

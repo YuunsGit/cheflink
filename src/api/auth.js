@@ -61,7 +61,7 @@ export async function login(credentials) {
   }
 
   if (cookies().get("session")) {
-    kv.del(cookies().get("session").value);
+    await kv.del(cookies().get("session").value);
   }
 
   const sessionId = crypto.randomUUID();
@@ -73,9 +73,19 @@ export async function login(credentials) {
   cookies().set("session", sessionId, { secure: true });
 
   return {
-    message: "Login successful",
+    message: "Log in successful",
     userId: user.id,
     username: user.username,
+  };
+}
+
+export async function logout() {
+  if (cookies().get("session")) {
+    await kv.del(cookies().get("session").value);
+  }
+
+  return {
+    message: "Log out successful",
   };
 }
 

@@ -35,9 +35,14 @@ export async function createRecipe({
 
 export async function deleteRecipe({ recipeId }) {
   try {
-    await Prisma.getPrisma().recipe.delete({
+    await Prisma.getPrisma().comment.deleteMany({
       where: {
         recipeId,
+      },
+    });
+    await Prisma.getPrisma().recipe.delete({
+      where: {
+        id: recipeId,
       },
     });
     return { message: "Recipe deleted successfully" };

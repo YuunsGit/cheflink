@@ -46,7 +46,12 @@ export default async function Recipe({ params }) {
   return (
     <main className="mx-auto w-full max-w-5xl flex-grow">
       <div className="mx-auto my-14 max-w-2xl space-y-6">
-        <h1 className="text-center text-3xl font-semibold">{recipe.title}</h1>
+        <div>
+          <h1 className="text-center text-3xl font-semibold">{recipe.title}</h1>
+          <p className="mt-3 text-center">
+            Written by {users.find((u) => u.id === recipe.userId).username}
+          </p>
+        </div>
         <div className="mx-auto grid w-full max-w-md grid-cols-2 justify-center">
           <div className="flex items-center justify-center gap-x-1 px-10 font-semibold">
             <ChatBubbleOvalLeftIcon className="h-6 w-6" />

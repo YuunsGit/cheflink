@@ -43,6 +43,7 @@ export default function CommentForm({ recipe }) {
     setContent("");
     setRating(-1);
     router.refresh();
+    setLoading(false);
   };
 
   return (

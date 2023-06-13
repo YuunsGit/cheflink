@@ -3,20 +3,21 @@ generator client {
 }
 
 datasource db {
-  provider = "cockroachdb"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL")
 }
 
 model Recipe {
   id          BigInt    @id @default(autoincrement())
   userId      BigInt
-  slug        String    @unique
   title       String
+  slug        String    @unique
   image       String
   steps       String[]
   ingredients String[]
-  User        User      @relation(fields: [userId], references: [id])
   comments    Comment[]
+  User        User      @relation(fields: [userId], references: [id])
 }
 
 model User {
@@ -24,16 +25,16 @@ model User {
   username String    @unique
   email    String    @unique
   password String    @unique
-  recipes  Recipe[]
   comments Comment[]
+  recipes  Recipe[]
 }
 
 model Comment {
   id       BigInt @id @default(autoincrement())
-  userId   BigInt
   recipeId BigInt
   content  String
   rating   Int
+  userId   BigInt
   Recipe   Recipe @relation(fields: [recipeId], references: [id])
   User     User   @relation(fields: [userId], references: [id])
 }
