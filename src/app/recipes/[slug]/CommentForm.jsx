@@ -21,13 +21,11 @@ export default function CommentForm({ recipe }) {
   const handleComment = async (e) => {
     e.preventDefault();
     if (!user.authorized) {
-      router.push("/login");
-    }
-    if (!content) {
-      toast.error("Enter your comment");
-    }
-    if (rating < 0) {
-      toast.error("Enter your rating");
+      return router.push("/login");
+    } else if (!content) {
+      return toast.warn("Enter your comment");
+    } else if (rating < 0) {
+      return toast.warn("Enter your rating");
     }
     setLoading(true);
     const commentSubmit = await insertComment({

@@ -44,7 +44,7 @@ export default async function Recipe({ params }) {
   }, 0);
 
   return (
-    <main className="mx-auto my-10 w-full max-w-5xl flex-grow">
+    <main className="mx-auto w-full max-w-5xl flex-grow">
       <div className="mx-auto my-14 max-w-2xl space-y-6">
         <h1 className="text-center text-3xl font-semibold">{recipe.title}</h1>
         <div className="mx-auto grid w-full max-w-md grid-cols-2 justify-center">

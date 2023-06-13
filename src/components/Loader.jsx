@@ -6,7 +6,7 @@ import loadAnimation from "@/lottie/Loader.json";
 export default function Loader() {
   return (
     <Lottie
-      className="my-auto h-64"
+      className="mx-auto my-auto max-w-lg"
       animationData={loadAnimation}
       loop={true}
     />

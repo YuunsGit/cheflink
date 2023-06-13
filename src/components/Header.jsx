@@ -6,8 +6,13 @@ import User from "./User";
 import { useContext } from "react";
 import { AuthContext } from "@/components/AuthProvider";
 import { ShareRecipeButton } from "@/components/ShareRecipeButton";
+import { listRecipes } from "@/api/recipe";
+import { listComments } from "@/api/comment";
 
-export default async function Header({ comments, recipes }) {
+export default async function Header() {
+  const recipes = await listRecipes();
+  const comments = await listComments();
+
   return (
     <header className="mb-8 w-full bg-primary-700 text-white">
       <div className="mx-auto flex h-20 max-w-6xl flex-auto items-center justify-between gap-x-24">

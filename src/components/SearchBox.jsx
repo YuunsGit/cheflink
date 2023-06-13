@@ -15,9 +15,9 @@ export default function SearchBox({ recipes, comments }) {
       setSearch([]);
       return;
     }
-    const filtered = recipes.filter((r) =>
-      r.title.toLowerCase().includes(input.toLowerCase())
-    );
+    const filtered = recipes
+      .filter((r) => r.title.toLowerCase().includes(input.toLowerCase()))
+      .slice(0, 5);
     setSearch(filtered);
   };
 
