@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
 export default async function Recipe({ params }) {
   const recipes = await listRecipes({ slug: params.slug });
   const recipe = recipes[0];
-  const comments = await listComments({ recipeId: BigInt(recipe.id) });
+  const comments = await listComments({ recipeId: recipe.id });
   const users = await listUsers();
 
   const star =

@@ -15,7 +15,7 @@ export function DeleteRecipeButton({ recipeId, userId }) {
 
   return (
     <>
-      {userId === BigInt(user.userId) && (
+      {userId === user.userId && (
         <button
           type="button"
           onClick={async () => {
