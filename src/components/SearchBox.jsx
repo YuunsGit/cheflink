@@ -42,7 +42,7 @@ export default function SearchBox({ recipes, comments }) {
         />
       </div>
       {search.length > 0 && expanded && (
-        <div className="relative z-20 translate-y-2 text-black" ref={dropdown}>
+        <div className="relative z-40 translate-y-2 text-black" ref={dropdown}>
           <ul className="absolute left-0 w-full rounded border bg-white shadow-lg">
             {search.map((recipe) => (
               <li key={recipe.id} className="border-b px-2 py-2">
